@@ -1,0 +1,32 @@
+#include<iostream>
+using namespace std;
+
+int main() {
+    char* s = "ibaz";
+    int mark[128], maxlength = 0;
+    int n = 0, i = 0, j = 0, length = 0, k;
+    while (s[i++])
+    {
+        n++;
+    }
+    for (j = 0; j <= n - maxlength; j++)
+    {
+        for (i = j; i < n; i++)
+        {
+            k = s[i];
+            if (mark[k] == 1)
+                break;
+            else
+                mark[k] = 1;
+            length++;
+        }
+        if (length > maxlength)
+            maxlength = length;
+        length = 0;
+        for (int jj = 0; jj < 128; jj++)
+        {
+            mark[jj] = 0;
+        }
+    }
+    cout << maxlength << endl;
+}
