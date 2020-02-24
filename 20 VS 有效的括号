@@ -1,0 +1,58 @@
+#include<iostream>
+using namespace std;
+
+bool isValid(char* s) {
+    int i = 0, j = 0, k = 0;
+    while (s[k])
+    {
+        k++;
+    }
+    char* stack = (char*)malloc(sizeof(char) * k);
+    if (s[i] == ')' || s[i] == ']' || s[i] == '}')
+        return false;
+    while (s[i])
+    {
+        if (s[i] == '(' || s[i] == '[' || s[i] == '{')
+        {
+            stack[j] = s[i];
+            i++;
+            j++;
+        }
+        else if (s[i] == ')')
+        {
+            i++;
+            if (stack[--j] == '(')
+                continue;
+            else
+                return false;
+        }
+        else if (s[i] == ']')
+        {
+            i++;
+            if (stack[--j] == '[')
+                continue;
+            else
+                return false;
+        }
+        else if (s[i] == '}')
+        {
+            i++;
+            if (stack[--j] == '{')
+                continue;
+            else
+                return false;
+        }
+    }
+    if (j == 0) {
+        return true;
+    }
+    return false;
+}
+
+int main() { 
+    char* s = "[]()[]]";
+    if (isValid(s))
+        cout << "lizhiyang" << endl;
+    else
+        cout << "fuck" << endl;
+}
